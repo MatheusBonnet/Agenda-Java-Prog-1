@@ -21,9 +21,8 @@ public class Agenda {
 
 	@Override
 	public String toString() {
-		return "Agenda [contatos=" + contatos + "]";
+		return "Agenda \nContatos: \n" + contatos + "\n";
 	}
-	
-	
+
 	
 }

@@ -43,7 +43,8 @@ public class Contato {
 
 	@Override
 	public String toString() {
-		return "Contato [email=" + email + ", ddd=" + ddd + ", telefone=" + telefone + "]";
+		return " email = "  + email + " ddd = " + ddd
+				+ " telefone = " + telefone + "\n";
 	}
 	
 	

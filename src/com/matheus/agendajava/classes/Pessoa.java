@@ -43,7 +43,11 @@ public class Pessoa {
 	
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", sobrenome=" + sobrenome + ", contato=" + contato + "]";
+		return " nome = " + nome
+				+ " sobrenome = " + sobrenome
+				+ " contato = " + contato + "\n";
 	}
+	
+	
 
 }
