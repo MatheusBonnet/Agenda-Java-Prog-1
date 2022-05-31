@@ -1,7 +1,6 @@
 package com.matheus.agendajava.programa;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ public class Programa {
 	
 		
 		List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
-		Agenda agenda = new Agenda(listaPessoas);
+		Agenda agendaNova = new Agenda(listaPessoas);
 		Scanner sc  = new Scanner(System.in);
 		
 		
@@ -28,11 +27,59 @@ public class Programa {
 			switch (opc) {
 			case 1:
 				
-				listaPessoas.forEach(x -> System.out.println(x.getNome()));
+				agendaNova.getContatos().forEach(x -> System.out.println(x.getNome()));
 				
 				break;
 			case 2:
 				
+				System.out.println("Digite o nome do contato para editar: ");
+				String nomeEditar = sc.nextLine();
+				
+				
+				for (int i = 0; i < listaPessoas.size(); i++) {
+	            	Pessoa pessoa = listaPessoas.get( i );
+	            	if(pessoa.getNome().contains(nomeEditar)) {
+	            		
+	            		System.out.println("Oque vc quer alterar: Nome-1 Sobrenome-2 Email-3 Contato-4");
+						Integer novo = sc.nextInt();
+						sc.nextLine();
+						
+						if(novo == 1) {
+							System.out.println("Digite o novo nome: ");
+							String nomeNovo = sc.nextLine();
+							pessoa.setNome(nomeNovo);
+							System.out.println("Nome alterado para: " + nomeNovo);
+							
+						}
+						if(novo == 2){
+							
+							System.out.println("Digite o novo sobrenome: ");
+							String sobrenomeNovo = sc.nextLine();
+							pessoa.setSobrenome(sobrenomeNovo);
+							System.out.println("Sobrenome alterado para: " + sobrenomeNovo);
+						}
+						if(novo == 3){
+							
+							System.out.println("Digite o novo email: ");
+							String novoEmail = sc.nextLine();
+							pessoa.getContato().forEach(x -> x.setEmail(novoEmail));
+							System.out.println("Email alterado para: " + novoEmail);
+						}
+						if(novo == 4){
+							
+							System.out.println("Digite o novo ddd: ");
+							String novoDDD = sc.nextLine();
+							pessoa.getContato().forEach(x -> x.setDdd(novoDDD));
+							
+							System.out.println("Digite o novo numero: ");
+							String novoTel = sc.nextLine();
+							pessoa.getContato().forEach(x -> x.setTelefone(novoTel));
+							
+							System.out.println("DDD alterado para " + novoDDD + " Telefone para " + novoTel);
+						}
+	            	}	
+	            	
+				}
 				
 				
 				break;
@@ -71,18 +118,47 @@ public class Programa {
 					
 				} while (escolha == 1);
 				
+				
 				System.out.println("Adicionado com sucesso");
 				
 				break;
 			case 4:
 				
+				System.out.println("Digite o nome do contato para excluir: ");
+				String nomeExcluir = sc.nextLine();
+				
+
+				for (int i = 0; i < listaPessoas.size(); i++) {
+	            	Pessoa pessoa = listaPessoas.get( i );
+	            	if(pessoa.getNome().contains(nomeExcluir)) {
+	            		listaPessoas.remove(pessoa);
+	            	}else {
+	            		System.out.println("Contato não encontrado!!!");
+	            	}
+				}
+				
 				
 				break;
 				
 			case 5:
+
+				System.out.println("Digite o nome do contato para ver detalhado: ");
+				String nomeDetalhado = sc.nextLine();
+				
+				for (int i = 0; i < listaPessoas.size(); i++) {
+	            	Pessoa pessoa = listaPessoas.get( i );
+	            	if(pessoa.getNome().contains(nomeDetalhado)) {
+	            		System.out.println(pessoa);
+	            	}
+	            	else {
+	            		System.err.println("Nao existe ninguem com esse nome!!!!");
+	            	}
+	            	
+				}
 				
 				
 				break;
+				
 			default:
 				System.out.println("Finalizando a aplicação...");
 				System.exit(0);

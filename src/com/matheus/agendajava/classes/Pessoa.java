@@ -48,6 +48,5 @@ public class Pessoa {
 				+ " contato = " + contato + "\n";
 	}
 	
-	
 
 }
