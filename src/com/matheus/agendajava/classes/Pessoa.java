@@ -44,9 +44,8 @@ public class Pessoa {
 	@Override
 	public String toString() {
 		return " nome = " + nome
-				+ " sobrenome = " + sobrenome
-				+ " contato = " + contato + "\n";
+		     + "\n sobrenome = " + sobrenome
+			 + "\n contato = " + contato + "\n";
 	}
 	
-
 }
