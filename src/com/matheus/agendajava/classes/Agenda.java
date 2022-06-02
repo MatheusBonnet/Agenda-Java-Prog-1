@@ -1,5 +1,8 @@
 package com.matheus.agendajava.classes;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,8 +11,8 @@ public class Agenda {
 
 	private List<Pessoa> contatos = new ArrayList<Pessoa>();
 
-	public Agenda(List<Pessoa> contatos) {
-		this.contatos = contatos;
+	public Agenda() {
+		
 	}
 
 	public List<Pessoa> getContatos() {
@@ -25,17 +28,17 @@ public class Agenda {
 		return "Agenda" + contatos + "\n";
 	}
 
-	public void mostraNome(Agenda agenda) {
-		agenda.getContatos().forEach(x -> System.out.println(x.getNome()));
+	public void mostraNome() {
+		contatos.forEach(x -> System.out.println(x.getNome()));
 	}
 
-	public void edita(List<Pessoa> listaPessoas, Scanner sc) {
+	public void edita(Scanner sc) {
 
 		System.out.println("Digite o nome do contato para editar: ");
 		String nomeEditar = sc.nextLine();
 
-		for (int i = 0; i < listaPessoas.size(); i++) {
-			Pessoa pessoa = listaPessoas.get(i);
+		for (int i = 0; i < contatos.size(); i++) {
+			Pessoa pessoa = contatos.get(i);
 			if (pessoa.getNome().contains(nomeEditar)) {
 
 				System.out.println("Oque vc quer alterar: Nome-1 Sobrenome-2 Email-3 Contato-4");
@@ -79,39 +82,37 @@ public class Agenda {
 		}
 	}
 
-	public void mostraDetalhado(List<Pessoa> listaPessoas, Scanner sc) {
+	public void mostraDetalhado(Scanner sc) {
 
 		System.out.println("Digite o nome do contato para ver detalhado: ");
 		String nomeDetalhado = sc.nextLine();
 
-		for (int i = 0; i < listaPessoas.size(); i++) {
-			Pessoa pessoa = listaPessoas.get(i);
+		for (int i = 0; i < contatos.size(); i++) {
+			Pessoa pessoa = contatos.get(i);
 			if (pessoa.getNome().contains(nomeDetalhado)) {
 				System.out.println(pessoa);
 			} else {
 				System.err.println("Nao existe ninguem com esse nome!!!!");
 			}
-
 		}
 	}
 
-	public void exclui(List<Pessoa> listaPessoas, Scanner sc) {
+	public void exclui(Scanner sc) {
 
 		System.out.println("Digite o nome do contato para ver detalhado: ");
 		String nomeDetalhado = sc.nextLine();
 
-		for (int i = 0; i < listaPessoas.size(); i++) {
-			Pessoa pessoa = listaPessoas.get(i);
+		for (int i = 0; i < contatos.size(); i++) {
+			Pessoa pessoa = contatos.get(i);
 			if (pessoa.getNome().contains(nomeDetalhado)) {
-				System.out.println(pessoa);
+				contatos.remove(pessoa);
 			} else {
 				System.err.println("Nao existe ninguem com esse nome!!!!");
 			}
-
 		}
 	}
 	
-	public void inserirContato(List<Pessoa> listaPessoas, Scanner sc) {
+	public void inserirContato(Scanner sc) {
 		
 		Integer escolha = 0;
 		
@@ -125,7 +126,7 @@ public class Agenda {
 		
 		Pessoa newPessoa = new Pessoa(nome, sobrenome, listaContatos);
 		
-		listaPessoas.add(newPessoa);
+		contatos.add(newPessoa);
 		
 		do {
 			System.out.println("Digite um email se tiver: ");
@@ -146,9 +147,8 @@ public class Agenda {
 			sc.nextLine();
 			
 		} while (escolha == 1);
-		
-		
 		System.out.println("Adicionado com sucesso");
+		
 	}
 
 }
